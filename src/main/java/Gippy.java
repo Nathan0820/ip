@@ -31,10 +31,7 @@ public class Gippy {
             } else if (input.startsWith("unmark")) {
                 handleMark(input, tasks, line, false);
             } else {
-                tasks.add(new Task(input));
-                System.out.println(line);
-                System.out.println("    added: " + input);
-                System.out.println(line);
+                addTask(input, tasks, line);
             }
         }
 
@@ -58,6 +55,37 @@ public class Gippy {
             System.out.println("    OK, I've marked this task as not done yet:");
         }
         System.out.println("      " + task);
+        System.out.println(line);
+    }
+
+    public static void addTask(String input, ArrayList<Task> tasks, String line) {
+        Task task;
+
+        if (input.startsWith("todo")) {
+            String description = input.substring(5);
+            task = new Todo(description);
+            tasks.add(task);
+        } else if (input.startsWith("deadline")) {
+            int separator = input.indexOf("/by");
+            String description = input.substring(9,  separator);
+            String deadline = input.substring(separator + 4);
+            task = new Deadline(description, deadline);
+            tasks.add(task);
+        } else if (input.startsWith("event")) {
+            int from = input.indexOf("/from");
+            int to = input.indexOf("/to");
+            String description = input.substring(6, from);
+            String fromDate = input.substring(from + 6, to);
+            String toDate = input.substring(to + 4);
+            task = new Event(description, fromDate, toDate);
+            tasks.add(task);
+        } else {
+            return;
+        }
+        System.out.println(line);
+        System.out.println("     Got it. I've added this task:");
+        System.out.println("       " + task);
+        System.out.println("     Now you have " + tasks.size() + " tasks in the list.");
         System.out.println(line);
     }
 }
