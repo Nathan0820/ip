@@ -6,7 +6,7 @@ public class Gippy {
         //initialize variables
         Scanner scanner = new Scanner(System.in);
         String line = "    ____________________________________________________________";
-        ArrayList<String> tasks = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
         //greet
         System.out.println(line);
         System.out.println("     Hello! I'm Gippy");
@@ -16,16 +16,22 @@ public class Gippy {
         //store task in arraylist and list them out
         while (true){
             String input = scanner.nextLine();
+
             if (input.equals("bye")) {
                 break;
             } else if (input.equals("list")) {
                 System.out.println(line);
+                System.out.println("    Here are the tasks in your list:");
                 for (int i = 0; i < tasks.size(); i++) {
-                    System.out.println("    " + (i + 1) + ". " + tasks.get(i));
+                    System.out.println("    " + (i + 1) + "." + tasks.get(i));
                 }
                 System.out.println(line);
+            } else if (input.startsWith("mark")) {
+                handleMark(input, tasks, line, true);
+            } else if (input.startsWith("unmark")) {
+                handleMark(input, tasks, line, false);
             } else {
-                tasks.add(input);
+                tasks.add(new Task(input));
                 System.out.println(line);
                 System.out.println("    added: " + input);
                 System.out.println(line);
@@ -35,6 +41,23 @@ public class Gippy {
         //exit
         System.out.println(line);
         System.out.println("     Bye. Hope to see you again soon!");
+        System.out.println(line);
+    }
+
+    //function to handle mark or unmark
+    public static void handleMark(String input, ArrayList<Task> tasks, String line, boolean markDone) {
+        String[] processedInput = input.split(" "); //split string to extract task name and index
+        int index = Integer.parseInt(processedInput[1]);
+        Task task = tasks.get(index - 1);
+        System.out.println(line);
+        if (markDone) {
+            task.markDone();
+            System.out.println("    Nice! I've marked this task as done:");
+        } else {
+            task.markUndone();
+            System.out.println("    OK, I've marked this task as not done yet:");
+        }
+        System.out.println("      " + task);
         System.out.println(line);
     }
 }
