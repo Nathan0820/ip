@@ -40,6 +40,8 @@ public class Gippy {
                 handleMark(input, tasks, line, true);
             } else if (input.startsWith("unmark")) {
                 handleMark(input, tasks, line, false);
+            } else if (input.startsWith("delete")) {
+                handleDelete(input, tasks, line);
             } else {
                 addTask(input, tasks, line);
             }
@@ -75,7 +77,6 @@ public class Gippy {
             System.out.println(e.getMessage());
             System.out.println(line);
         }
-
     }
 
     public static void addTask(String input, ArrayList<Task> tasks, String line) {
@@ -123,6 +124,30 @@ public class Gippy {
             System.out.println("     Got it. I've added this task:");
             System.out.println("       " + task);
             System.out.println("     Now you have " + tasks.size() + " tasks in the list.");
+            System.out.println(line);
+        } catch (GippyException e) {
+            System.out.println(line);
+            System.out.println(e.getMessage());
+            System.out.println(line);
+        }
+    }
+
+    public static void handleDelete(String input, ArrayList<Task> tasks, String line) {
+        try {
+            String[] processedInput = input.split(" "); //split string to extract task name and index
+            if (processedInput.length < 2) {
+                throw new GippyException("      Task description required! Please try again.");
+            }
+            int index = Integer.parseInt(processedInput[1]);
+            if (index < 1 || index > tasks.size()) {
+                throw new GippyException("      Invalid task number!! Please try a different number");
+            }
+            Task task = tasks.get(index - 1);
+            System.out.println(line);
+            tasks.remove(task);
+            System.out.println("      Noted. I've removed this task:");
+            System.out.println("      " + task);
+            System.out.println("      Now you have " + tasks.size() + " tasks in the list.");
             System.out.println(line);
         } catch (GippyException e) {
             System.out.println(line);
