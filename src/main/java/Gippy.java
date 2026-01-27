@@ -1,11 +1,52 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Gippy {
+    private static Storage storage;
     public static void main(String[] args) {
         //initialize variables
+        String filePath = Paths.get("data", "gippy.txt").toString();
+        storage = new Storage(filePath);
         Scanner scanner = new Scanner(System.in);
+        ArrayList<Task> tasks;
         String line = "    ____________________________________________________________";
+
+        //load task from storage, initialize a new arraylist if not found
+        try {
+            tasks = storage.getTasks();
+        } catch (FileNotFoundException e) {
+            tasks = new ArrayList<>();
+        }
+
+        printHello(line);
+
+        while (true){
+            String input = scanner.nextLine().toLowerCase();
+            if (input.equals("bye")) {
+                break;
+            } else if (input.equals("list")) {
+                handleList(tasks, line);
+            } else if (input.startsWith("mark")) {
+                handleMark(input, tasks, line, true);
+            } else if (input.startsWith("unmark")) {
+                handleMark(input, tasks, line, false);
+            } else if (input.startsWith("delete")) {
+                handleDelete(input, tasks, line);
+            } else {
+                handleAdd(input, tasks, line);
+            }
+        }
+        printBye(line);
+    }
+
+    /**
+     * Print greeting message when chatbot is first activated
+     * @param line Line to separate messages
+     */
+    private static void printHello(String line) {
         String logo = """
                    ▄▄▄▄▄▄ ▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄   ▄▄ 
                   █      █   █       █       █  █ █  █
@@ -15,46 +56,64 @@ public class Gippy {
                   █      █   █   █   █   █     █   █  
                   █▄▄▄▄▄▄█▄▄▄█▄▄▄█   █▄▄▄█     █▄▄▄█  
             """;
-        ArrayList<Task> tasks = new ArrayList<>();
-        //greet
+
         System.out.println(line);
         System.out.println("      Hello! I'm");
         System.out.println(logo);
         System.out.println("      How can I help you?");
         System.out.println(line);
+    }
 
-        //store task in arraylist and list them out
-        while (true){
-            String input = scanner.nextLine();
-
-            if (input.equals("bye")) {
-                break;
-            } else if (input.equals("list")) {
-                System.out.println(line);
-                System.out.println("    Here are the tasks in your list:");
-                for (int i = 0; i < tasks.size(); i++) {
-                    System.out.println("    " + (i + 1) + "." + tasks.get(i));
-                }
-                System.out.println(line);
-            } else if (input.startsWith("mark")) {
-                handleMark(input, tasks, line, true);
-            } else if (input.startsWith("unmark")) {
-                handleMark(input, tasks, line, false);
-            } else if (input.startsWith("delete")) {
-                handleDelete(input, tasks, line);
-            } else {
-                addTask(input, tasks, line);
-            }
-        }
-
-        //exit
+    /**
+     * Prints closing message when user closes the program
+     * @param line Line to separate messages
+     */
+    private static void printBye(String line) {
         System.out.println(line);
         System.out.println("     Bye. Hope to see you again soon!");
         System.out.println(line);
     }
 
-    //function to handle mark or unmark
-    public static void handleMark(String input, ArrayList<Task> tasks, String line, boolean markDone) {
+    /**
+     * Saves all existing tasks to the storage file
+     * @param tasks Arraylist that stores tasks
+     */
+    private static void saveToFile(ArrayList<Task> tasks) {
+        try {
+            storage.saveTasks(tasks);
+        } catch (IOException e) {
+            System.out.println("    Error saving tasks to file");
+        }
+    }
+
+    /**
+     * Lists out all tasks stored in the list.
+     * @param tasks Arraylist to store tasks
+     * @param line Line to separate messages
+     */
+    private static void handleList(ArrayList<Task> tasks, String line) {
+        if (tasks.isEmpty()) {
+            System.out.println(line);
+            System.out.println("    No tasks found, add one to start!");
+            System.out.println(line);
+            return;
+        }
+        System.out.println(line);
+        System.out.println("    Here are the tasks in your list:");
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.println("    " + (i + 1) + "." + tasks.get(i));
+        }
+        System.out.println(line);
+    }
+
+    /**
+     * Handles marking of tasks to be done or not done.
+     * @param input Input message to be processed
+     * @param tasks Arraylist to store tasks
+     * @param line Line to separate messages
+     * @param isDone Boolean value to show whether a task is done or not
+     */
+    public static void handleMark(String input, ArrayList<Task> tasks, String line, boolean isDone) {
         try {
             String[] processedInput = input.split(" "); //split string to extract task name and index
             int index = Integer.parseInt(processedInput[1]);
@@ -63,13 +122,14 @@ public class Gippy {
             }
             Task task = tasks.get(index - 1);
             System.out.println(line);
-            if (markDone) {
+            if (isDone) {
                 task.markDone();
                 System.out.println("    Nice! I've marked this task as done:");
             } else {
                 task.markUndone();
                 System.out.println("    OK, I've marked this task as not done yet:");
             }
+            saveToFile(tasks);
             System.out.println("      " + task);
             System.out.println(line);
         } catch (GippyException e) {
@@ -79,7 +139,13 @@ public class Gippy {
         }
     }
 
-    public static void addTask(String input, ArrayList<Task> tasks, String line) {
+    /**
+     * Adds tasks to the arraylist.
+     * @param input Input to be processed
+     * @param tasks Arraylist to store tasks
+     * @param line Line to separate messages
+     */
+    public static void handleAdd(String input, ArrayList<Task> tasks, String line) {
         try {
             Task task;
 
@@ -120,6 +186,7 @@ public class Gippy {
             } else {
                 throw new GippyException("      I'm sorry, I don't know what this means. Please try again.");
             }
+            saveToFile(tasks);
             System.out.println(line);
             System.out.println("     Got it. I've added this task:");
             System.out.println("       " + task);
@@ -132,6 +199,12 @@ public class Gippy {
         }
     }
 
+    /**
+     * Deletes tasks that the user wish to delete
+     * @param input Input to be processed
+     * @param tasks Arraylist to store tasks
+     * @param line Line to separate messages
+     */
     public static void handleDelete(String input, ArrayList<Task> tasks, String line) {
         try {
             String[] processedInput = input.split(" "); //split string to extract task name and index
@@ -145,6 +218,7 @@ public class Gippy {
             Task task = tasks.get(index - 1);
             System.out.println(line);
             tasks.remove(task);
+            saveToFile(tasks);
             System.out.println("      Noted. I've removed this task:");
             System.out.println("      " + task);
             System.out.println("      Now you have " + tasks.size() + " tasks in the list.");
