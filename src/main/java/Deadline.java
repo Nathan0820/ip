@@ -1,9 +1,22 @@
-public class Deadline extends Task {
-    private final String deadline;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
-    public Deadline(String description, String deadline) {
+public class Deadline extends Task {
+    private LocalDate deadline;
+
+    public Deadline(String description, String deadline) throws GippyException {
         super(description);
-        this.deadline = deadline;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            this.deadline = LocalDate.parse(deadline, formatter);
+        } catch (DateTimeParseException e) {
+            try {
+                this.deadline = LocalDate.parse(deadline);
+            } catch (DateTimeParseException e1) {
+                throw new GippyException("      Sorry, I don't recognise this pattern. Use the following format: deadline task_name /by yyyy-MM-dd");
+            }
+        }
     }
 
     @Override
@@ -13,6 +26,7 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + deadline + ")";
+        String date = deadline.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return "[D]" + super.toString() + " (by: " + date + ")";
     }
 }
