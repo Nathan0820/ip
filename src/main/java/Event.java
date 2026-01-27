@@ -7,6 +7,10 @@ public class Event extends Task {
         this.startTime = startTime;
         this.endTime = endTime;
     }
+    @Override
+    public String taskToString() {
+        return String.format("E | %d | %s | %s | %s", isDone ? 1 : 0, description, startTime, endTime);
+    }
 
     @Override
     public String toString() {
