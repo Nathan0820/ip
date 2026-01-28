@@ -1,4 +1,7 @@
-import java.util.ArrayList;
+package gippy.ui;
+
+import gippy.task.TaskList;
+
 import java.util.Scanner;
 
 public class Ui {
