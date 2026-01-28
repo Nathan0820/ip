@@ -1,3 +1,11 @@
+package gippy.storage;
+
+import gippy.exception.GippyException;
+import gippy.task.Deadline;
+import gippy.task.Event;
+import gippy.task.Task;
+import gippy.task.Todo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -29,7 +37,7 @@ public class Storage {
     }
 
     /**
-     * Process lines from storage file to a Task class
+     * Process lines from storage file to a gippy.task.Task class
      * @param line Line from each row in the storage file
      * @return Arraylist of tasks from storage
      */
