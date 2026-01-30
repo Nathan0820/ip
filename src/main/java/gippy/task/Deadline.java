@@ -18,7 +18,7 @@ public class Deadline extends Task {
             try {
                 this.deadline = LocalDate.parse(deadline);
             } catch (DateTimeParseException e1) {
-                throw new GippyException("      Sorry, I don't recognise this pattern. Use the following format: deadline task_name /by yyyy-MM-dd");
+                throw new GippyException("Sorry, I don't recognise this pattern. Use the following format: deadline task_name /by yyyy-MM-dd");
             }
         }
     }

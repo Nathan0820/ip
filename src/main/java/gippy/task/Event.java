@@ -21,7 +21,7 @@ public class Event extends Task {
                 this.startTime = LocalDate.parse(startTime);
                 this.endTime = LocalDate.parse(endTime);
             } catch (DateTimeParseException e1) {
-                throw new GippyException("    Sorry, I don't recognise this pattern. Use the following format: event task_name /from yyyy-MM-dd /to yyyy-MM-dd");
+                throw new GippyException("Sorry, I don't recognise this pattern. Use the following format: event task_name /from yyyy-MM-dd /to yyyy-MM-dd");
             }
         }
     }
