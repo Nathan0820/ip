@@ -4,6 +4,9 @@ import gippy.task.TaskList;
 
 import java.util.Scanner;
 
+/**
+ * Ui class to handle interactions with the user.
+ */
 public class Ui {
     private Scanner scanner;
 
@@ -19,7 +22,7 @@ public class Ui {
     }
 
     /**
-     * Print greeting message when chatbot is first activated
+     * Prints greeting message when chatbot is first activated
      */
     public void printHello() {
         String logo = """
@@ -48,6 +51,10 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Returns the input
+     * @return input
+     */
     public String processInput() {
         return scanner.nextLine().toLowerCase();
     }
@@ -63,11 +70,14 @@ public class Ui {
             printLine();
             return;
         }
+
         printLine();
         System.out.println("    Here are the tasks in your list:");
+
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println("    " + (i + 1) + "." + tasks.getTask(i));
         }
+        
         printLine();
     }
 }

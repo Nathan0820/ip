@@ -1,5 +1,8 @@
 package gippy.task;
 
+/**
+ * Todo class representing task with no due date.
+ */
 public class Todo extends Task {
     public Todo(String description) {
         super(description);
