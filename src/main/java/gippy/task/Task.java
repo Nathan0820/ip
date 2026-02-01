@@ -40,6 +40,10 @@ public abstract class Task {
      */
     public abstract String taskToString();
 
+    /**
+     * Returns formatted string to be seen by user
+     * @return formatted string
+     */
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;

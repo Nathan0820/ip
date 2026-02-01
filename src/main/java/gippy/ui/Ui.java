@@ -59,10 +59,18 @@ public class Ui {
         return scanner.nextLine().toLowerCase();
     }
 
+    /**
+     * Prints error messages to user with an error message
+     * @param message error message
+     */
     public void printError(String message) {
         System.out.println("    " + message);
     }
 
+    /**
+     * Handles the listing of task when user entered "list" as input
+     * @param tasks the TaskList that stores all tasks
+     */
     public void handleList(TaskList tasks) {
         if (tasks.isEmpty()) {
             printLine();
