@@ -136,7 +136,32 @@ public class Gippy {
     }
 
     /**
-     * Runs the whole Gippy program with handling exceptions
+     * Finds tasks that match the keyword given by the user.
+     * @param input User input to be processed
+     * @throws GippyException
+     */
+    public void handleFind(String input) throws GippyException {
+        String[] processedInput = input.split(" ");
+        if (processedInput.length < 2) {
+            throw new GippyException("Please provide a keyword to search for.");
+        }
+        String keyword = processedInput[1].trim();
+        TaskList foundTasks = tasks.findTasks(keyword);
+        ui.printLine();
+        if (foundTasks.size() == 0) {
+            System.out.println("      No tasks found with the keyword: " + keyword);
+        } else {
+            System.out.println("      Here are the matching tasks in your list:");
+            for (int i = 0; i < foundTasks.size(); i++) {
+                System.out.println("      " + (i + 1) + "." + foundTasks.getTask(i));
+            }
+        }
+        ui.printLine();
+    }
+
+
+    /**
+     * Runs the Gippy chatbot.
      */
     public void run() {
         ui.printHello();
@@ -170,6 +195,9 @@ public class Gippy {
                 case "event":
                     handleAdd(input);
                     storage.saveTasks(tasks.getAllTasks());
+                    break;
+                case "find":
+                    handleFind(input);
                     break;
                 default:
                     throw new GippyException("Sorry, I don't understand your input. Please try again.");
