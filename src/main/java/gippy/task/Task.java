@@ -1,5 +1,8 @@
 package gippy.task;
 
+/**
+ * Abstract Task class to be inherited by specific task types
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -10,7 +13,7 @@ public abstract class Task {
     }
 
     /**
-     * Get the icon so that user knows which task is done
+     * Gets the icon so that user knows which task is done
      * @return status icon
      */
     public String getStatusIcon() {
@@ -18,21 +21,21 @@ public abstract class Task {
     }
 
     /**
-     * Mark the task as done
+     * Marks the task as done
      */
     public void markDone() {
         this.isDone = true;
     }
 
     /**
-     * Mark the task as undone
+     * Marks the task as undone
      */
     public void markUndone() {
         this.isDone = false;
     }
 
     /**
-     * Transform the string to be stored into the storage file
+     * Transforms the string to be stored into the storage file
      * @return transformed string
      */
     public abstract String taskToString();
