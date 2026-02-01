@@ -6,6 +6,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Deadline class representing task with a due date.
+ */
 public class Deadline extends Task {
     private LocalDate deadline;
 

@@ -13,6 +13,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Storage class to handle loading and saving tasks to a txt file.
+ */
 public class Storage {
     private final String filePath;
 
@@ -21,9 +24,9 @@ public class Storage {
     }
 
     /**
-     * Load Tasks from storage file to be used by the main program
+     * Loads tasks from storage file to be used by the main program
      * @return Arraylist to be used by the main program
-     * @throws FileNotFoundException Initialize a new arraylist if there is no data
+     * @throws FileNotFoundException if the file is not found
      */
     public ArrayList<Task> getTasks() throws FileNotFoundException {
         ArrayList<Task> tasks = new ArrayList<>();
@@ -37,7 +40,7 @@ public class Storage {
     }
 
     /**
-     * Process lines from storage file to a gippy.task.Task class
+     * Processes lines from storage file to a gippy.task.Task class
      * @param line Line from each row in the storage file
      * @return Arraylist of tasks from storage
      */

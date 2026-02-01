@@ -3,7 +3,7 @@ package gippy;
 import gippy.exception.GippyException;
 import gippy.parser.Parser;
 import gippy.storage.Storage;
-import gippy.task.*;
+import gippy.task.Task;
 import gippy.ui.Ui;
 
 import java.io.FileNotFoundException;
@@ -33,9 +33,11 @@ public class Gippy {
      */
     public void handleMark(String input, boolean isDone) throws GippyException {
         String[] processedInput = input.split(" "); //split string to extract task name and index
+
         if (processedInput.length < 2) {
             throw new GippyException("Please give me a task number.");
         }
+
         try {
             int index = Integer.parseInt(processedInput[1]);
             if (index < 1 || index > tasks.size()) {
@@ -43,6 +45,7 @@ public class Gippy {
             }
             Task task = tasks.getTask(index - 1);
             ui.printLine();
+
             if (isDone) {
                 task.markDone();
                 System.out.println("    Nice! I've marked this task as done:");
@@ -50,6 +53,7 @@ public class Gippy {
                 task.markUndone();
                 System.out.println("    OK, I've marked this task as not done yet:");
             }
+
             System.out.println("      " + task);
             ui.printLine();
         } catch (NumberFormatException e) {
@@ -101,6 +105,7 @@ public class Gippy {
         } else {
             throw new GippyException("I'm sorry, I don't know what this means. Please try again.");
         }
+        
         ui.printLine();
         System.out.println("     Got it. I've added this task:");
         System.out.println("       " + task);
@@ -204,6 +209,7 @@ public class Gippy {
             }
         }
     }
+
     public static void main(String[] args) {
         String filePath = Paths.get("data", "gippy.txt").toString();
         new Gippy(filePath).run();
