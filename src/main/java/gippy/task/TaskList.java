@@ -36,4 +36,16 @@ public class TaskList {
     public ArrayList<Task> getAllTasks() {
         return this.tasks;
     }
+
+    public TaskList findTasks(String keyWord) {
+        TaskList foundTasks = new TaskList();
+
+        for (Task task : this.tasks) {
+            if (task.getDescription().contains(keyWord)) {
+                foundTasks.addTask(task);
+            }
+        }
+
+        return foundTasks;
+    }
 }
