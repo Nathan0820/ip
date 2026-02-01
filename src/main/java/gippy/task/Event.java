@@ -25,6 +25,7 @@ public class Event extends Task {
             }
         }
     }
+
     @Override
     public String taskToString() {
         return String.format("E | %d | %s | %s | %s", isDone ? 1 : 0, description, startTime, endTime);

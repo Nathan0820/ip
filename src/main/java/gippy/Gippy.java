@@ -130,6 +130,9 @@ public class Gippy {
         ui.printLine();
     }
 
+    /**
+     * Runs the whole Gippy program with handling exceptions
+     */
     public void run() {
         ui.printHello();
         boolean isRunning = true;
@@ -173,6 +176,7 @@ public class Gippy {
             }
         }
     }
+
     public static void main(String[] args) {
         String filePath = Paths.get("data", "gippy.txt").toString();
         new Gippy(filePath).run();
