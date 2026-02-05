@@ -7,6 +7,10 @@ public abstract class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Constructor for Task
+     * @param description Task description
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;

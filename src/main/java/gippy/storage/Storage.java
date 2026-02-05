@@ -53,18 +53,18 @@ public class Storage {
         Task task;
         try {
             switch (taskType) {
-                case "T":
-                    task = new Todo(description);
-                    break;
-                case "D":
-                    task = new Deadline(description, input[3]);
-                    break;
-                case "E":
-                    task = new Event(description, input[3], input[4]);
-                    break;
-                default:
-                    task = null;
-                    System.out.println("Unknown task type, please try again");
+            case "T":
+                task = new Todo(description);
+                break;
+            case "D":
+                task = new Deadline(description, input[3]);
+                break;
+            case "E":
+                task = new Event(description, input[3], input[4]);
+                break;
+            default:
+                task = null;
+                System.out.println("Unknown task type, please try again");
             }
 
         } catch (GippyException e) {

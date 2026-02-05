@@ -1,8 +1,8 @@
 package gippy.ui;
 
-import gippy.task.TaskList;
-
 import java.util.Scanner;
+
+import gippy.task.TaskList;
 
 /**
  * Ui class to handle interactions with the user.
@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Ui {
     private Scanner scanner;
 
-    public Ui(){
+    public Ui() {
         scanner = new Scanner(System.in);
     }
 

@@ -13,18 +13,26 @@ public class Event extends Task {
     private LocalDate startTime;
     private LocalDate endTime;
 
+    /**
+     * Constructor for Event
+     * @param description Event description
+     * @param startTime Start time
+     * @param endTime End time
+     * @throws GippyException Exception thrown during error
+     */
     public Event(String description, String startTime, String endTime) throws GippyException {
         super(description);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {
             this.startTime = LocalDate.parse(startTime, formatter);
             this.endTime = LocalDate.parse(endTime, formatter);
-        }  catch (DateTimeParseException e) {
+        } catch (DateTimeParseException e) {
             try {
                 this.startTime = LocalDate.parse(startTime);
                 this.endTime = LocalDate.parse(endTime);
             } catch (DateTimeParseException e1) {
-                throw new GippyException("Sorry, I don't recognise this pattern. Use the following format: event task_name /from yyyy-MM-dd /to yyyy-MM-dd");
+                throw new GippyException("Sorry, I don't recognise this pattern. "
+                        + "Use the following format: event task_name /from yyyy-MM-dd /to yyyy-MM-dd");
             }
         }
     }

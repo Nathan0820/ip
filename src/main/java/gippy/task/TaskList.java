@@ -65,6 +65,11 @@ public class TaskList {
         return this.tasks;
     }
 
+    /**
+     * Finds tasks using the input provided by user
+     * @param keyWord Word that is included inside the task description
+     * @return A taskList of found tasks
+     */
     public TaskList findTasks(String keyWord) {
         TaskList foundTasks = new TaskList();
 

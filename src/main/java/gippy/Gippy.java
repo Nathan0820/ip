@@ -3,18 +3,29 @@ package gippy;
 import gippy.exception.GippyException;
 import gippy.parser.Parser;
 import gippy.storage.Storage;
+import gippy.task.Deadline;
 import gippy.task.Task;
+import gippy.task.Event;
+import gippy.task.TaskList;
+import gippy.task.Todo;
 import gippy.ui.Ui;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
 
+/**
+ * Main Gippy class for the chatbot to operate
+ */
 public class Gippy {
     private Storage storage;
     private Ui ui;
     private TaskList tasks;
 
+    /**
+     * Constructor for Gippy
+     * @param filePath Filepath
+     */
     public Gippy(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -105,7 +116,6 @@ public class Gippy {
         } else {
             throw new GippyException("I'm sorry, I don't know what this means. Please try again.");
         }
-        
         ui.printLine();
         System.out.println("     Got it. I've added this task:");
         System.out.println("       " + task);
@@ -166,7 +176,7 @@ public class Gippy {
     public void run() {
         ui.printHello();
         boolean isRunning = true;
-        while (isRunning){
+        while (isRunning) {
             try {
                 String input = ui.processInput();
                 String command = Parser.getCommand(input);

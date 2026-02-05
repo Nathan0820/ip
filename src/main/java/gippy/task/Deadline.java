@@ -12,6 +12,12 @@ import java.time.format.DateTimeParseException;
 public class Deadline extends Task {
     private LocalDate deadline;
 
+    /**
+     * Constructor for Deadline
+     * @param description Deadline description
+     * @param deadline Deadline date
+     * @throws GippyException Exception thrown
+     */
     public Deadline(String description, String deadline) throws GippyException {
         super(description);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -21,7 +27,8 @@ public class Deadline extends Task {
             try {
                 this.deadline = LocalDate.parse(deadline);
             } catch (DateTimeParseException e1) {
-                throw new GippyException("Sorry, I don't recognise this pattern. Use the following format: deadline task_name /by yyyy-MM-dd");
+                throw new GippyException("Sorry, I don't recognise this pattern. "
+                        + "Use the following format: deadline task_name /by yyyy-MM-dd");
             }
         }
     }
