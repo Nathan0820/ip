@@ -45,10 +45,8 @@ public class Ui {
     /**
      * Prints closing message when user closes the program
      */
-    public void printBye() {
-        printLine();
-        System.out.println("     Bye. Hope to see you again soon!");
-        printLine();
+    public String printBye() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
@@ -63,29 +61,26 @@ public class Ui {
      * Prints error messages to user with an error message
      * @param message error message
      */
-    public void printError(String message) {
-        System.out.println("    " + message);
+    public String printError(String message) {
+        return message + "\n";
     }
 
     /**
      * Handles the listing of task when user entered "list" as input
      * @param tasks the TaskList that stores all tasks
      */
-    public void handleList(TaskList tasks) {
+    public String handleList(TaskList tasks) {
         if (tasks.isEmpty()) {
-            printLine();
-            System.out.println("    No tasks found, add one to start!");
-            printLine();
-            return;
+            return "No tasks found, add one to start!";
         }
 
-        printLine();
-        System.out.println("    Here are the tasks in your list:");
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the tasks in your list: \n");
 
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println("    " + (i + 1) + "." + tasks.getTask(i));
+            sb.append(i + 1).append(". ").append(tasks.getTask(i)).append("\n");
         }
         
-        printLine();
+        return sb.toString();
     }
 }

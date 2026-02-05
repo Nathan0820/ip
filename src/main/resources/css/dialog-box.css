@@ -1,0 +1,20 @@
+.label {
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-padding: 10px 15px;
+    -fx-background-color: linear-gradient(to bottom right, #6e73f5, #00d2ff);
+    -fx-background-radius: 15 15 5 15;
+    -fx-max-width: 270px;
+}
+
+.reply-label {
+    -fx-background-color: #555555;
+    -fx-background-radius: 15 15 15 5;
+}
+
+#displayPicture {
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+}
+
