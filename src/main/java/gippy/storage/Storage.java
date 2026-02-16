@@ -47,6 +47,8 @@ public class Storage {
     public Task stringToTask(String line) {
         String[] input = line.split(" \\| ");
         String taskType = input[0];
+        assert taskType.equals("T") || taskType.equals("D") || taskType.equals("E") 
+            : "Invalid task type";
         boolean isDone = input[1].equals("1");
         String description = input[2];
 

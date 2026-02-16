@@ -10,6 +10,7 @@ public class Parser {
      * @return Command to be executed
      */
     public static String getCommand(String input) {
+        assert input != null : "Input cannot be null";
         return input.split(" ")[0].toLowerCase();
     }
 }
