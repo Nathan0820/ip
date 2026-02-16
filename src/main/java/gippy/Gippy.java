@@ -167,6 +167,7 @@ public class Gippy {
         } else {
             sb.append("Here are the matching tasks in your list: \n");
             for (int i = 0; i < foundTasks.size(); i++) {
+                assert i >= 0 && i < foundTasks.size();
                 sb.append(i + 1).append(".").append(foundTasks.getTask(i)).append("\n");
             }
         }

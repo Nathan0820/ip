@@ -29,6 +29,7 @@ public class TaskList {
      * @param task Task to be deleted
      */
     public void deleteTask(Task task) {
+        assert this.tasks.contains(task) : "Task not found";
         this.tasks.remove(task);
     }
 
@@ -38,6 +39,7 @@ public class TaskList {
      * @return Task at the specified index
      */
     public Task getTask(int index) {
+        assert index >= 0 && index < this.tasks.size() : "Index out of bounds";
         return this.tasks.get(index);
     }
 
