@@ -54,21 +54,7 @@ public class Storage {
 
         Task task;
         try {
-            switch (taskType) {
-            case "T":
-                task = new Todo(description);
-                break;
-            case "D":
-                task = new Deadline(description, input[3]);
-                break;
-            case "E":
-                task = new Event(description, input[3], input[4]);
-                break;
-            default:
-                task = null;
-                System.out.println("Unknown task type, please try again");
-            }
-
+            task = createTask(taskType, description, input);
         } catch (GippyException e) {
             System.out.println("    Error: " + e.getMessage());
             return null;
@@ -77,6 +63,27 @@ public class Storage {
             task.markDone();
         }
         return task;
+    }
+
+    /**
+     * Creates a task based on the task type and description
+     * @param taskType Type of task (T, D, E)
+     * @param description Description of the task
+     * @param inputs Array of inputs from the storage file line
+     * @return The task created based on the task type and description
+     * @throws GippyException Handles unknown task type error
+     */
+    private Task createTask(String taskType, String description, String[] inputs) throws GippyException {
+        switch (taskType) {
+        case "T":
+            return new Todo(description);
+        case "D":
+            return new Deadline(description, inputs[3]);
+        case "E":
+            return new Event(description, inputs[3], inputs[4]);
+        default:
+            throw new GippyException("Unknown task type, please try again");
+        }
     }
 
     /**

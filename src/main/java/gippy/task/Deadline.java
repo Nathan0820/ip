@@ -10,6 +10,7 @@ import java.time.format.DateTimeParseException;
  * Deadline class representing task with a due date.
  */
 public class Deadline extends Task {
+    private static final String DATE_FORMAT = "yyyy-MM-dd";
     private LocalDate deadline;
 
     /**
@@ -20,7 +21,7 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String deadline) throws GippyException {
         super(description);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
         try {
             this.deadline = LocalDate.parse(deadline, formatter);
         } catch (DateTimeParseException e) {

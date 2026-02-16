@@ -43,7 +43,7 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * Flip the design of the bot
+     * Flips the design of the bot
      */
     private void flip() {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
@@ -54,7 +54,7 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * return user's DialogBox
+     * Returns user's DialogBox
      * @param s input String
      * @param i input Image
      * @return DialogBox
@@ -64,7 +64,7 @@ public class DialogBox extends HBox {
     }
 
     /**
-     * return gippy's DialogBox
+     * Returns gippy's DialogBox
      * @param s input String
      * @param i input Image
      * @return DialogBox
