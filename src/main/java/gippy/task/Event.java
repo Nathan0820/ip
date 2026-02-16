@@ -58,4 +58,9 @@ public class Event extends Task {
     private String formatDate(LocalDate date) {
         return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
+
+    @Override
+    public LocalDate getDate() {
+        return this.startTime; 
+    }
 }

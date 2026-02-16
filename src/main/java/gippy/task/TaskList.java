@@ -1,6 +1,7 @@
 package gippy.task;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * TaskList class to manage a list of tasks using an ArrayList.
@@ -17,11 +18,12 @@ public class TaskList {
     }
 
     /**
-     * Adds a task to the task list
+     * Adds a task to the task list and sorts by date
      * @param task Task to be added
      */
     public void addTask(Task task) {
         this.tasks.add(task);
+        this.sortTask();
     }
 
     /**
@@ -82,5 +84,14 @@ public class TaskList {
         }
 
         return foundTasks;
+    }
+
+    /**
+     * Sorts the task list by date, with tasks without dates at the end
+     */
+    public void sortTask() {
+        this.tasks.sort(Comparator.comparing(Task::getDate,
+            Comparator.nullsLast(Comparator.naturalOrder())
+        ));
     }
 }

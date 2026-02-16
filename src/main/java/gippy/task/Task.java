@@ -1,5 +1,7 @@
 package gippy.task;
 
+import java.time.LocalDate;
+
 /**
  * Abstract Task class to be inherited by specific task types
  */
@@ -55,5 +57,13 @@ public abstract class Task {
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
+    }
+
+    /**
+     * Gets the date of the task if applicable, otherwise returns null
+     * @return Date of the task
+     */
+    public LocalDate getDate() {
+        return null;
     }
 }
