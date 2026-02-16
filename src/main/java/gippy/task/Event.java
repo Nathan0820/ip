@@ -10,6 +10,7 @@ import java.time.format.DateTimeParseException;
  * Event class representing task with a start and end date.
  */
 public class Event extends Task {
+    private static final String DATE_FORMAT = "yyyy-MM-dd";
     private LocalDate startTime;
     private LocalDate endTime;
 
@@ -22,7 +23,7 @@ public class Event extends Task {
      */
     public Event(String description, String startTime, String endTime) throws GippyException {
         super(description);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
         try {
             this.startTime = LocalDate.parse(startTime, formatter);
             this.endTime = LocalDate.parse(endTime, formatter);
@@ -44,8 +45,17 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        String start = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(startTime);
-        String end = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(endTime);
+        String start = formatDate(startTime);
+        String end = formatDate(endTime);
         return "[E]" + super.toString() + " (from: " + start + " to: " + end + ")";
+    }
+
+    /**
+     * Formats the date to be displayed in the GUI
+     * @param date Date to be formatted
+     * @return Formatted date string
+     */
+    private String formatDate(LocalDate date) {
+        return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 }
