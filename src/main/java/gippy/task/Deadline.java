@@ -44,4 +44,9 @@ public class Deadline extends Task {
         String date = deadline.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         return "[D]" + super.toString() + " (by: " + date + ")";
     }
+
+    @Override
+    public LocalDate getDate() {
+        return this.deadline;
+    }
 }

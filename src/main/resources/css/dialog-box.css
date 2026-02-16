@@ -1,20 +1,27 @@
 .label {
-    -fx-font-family: "Arial";
-    -fx-font-size: 14px;
-    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(to bottom right, #a8b3ff, #7dd3fc);
+    -fx-border-width: 2px;
+    -fx-background-radius: 1em 1em 0 1em;
+    -fx-border-radius: 1em 1em 0 1em;
     -fx-padding: 10px 15px;
-    -fx-background-color: linear-gradient(to bottom right, #6e73f5, #00d2ff);
-    -fx-background-radius: 15 15 5 15;
-    -fx-max-width: 270px;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 14px;
+    -fx-text-fill: #1e293b;
 }
 
 .reply-label {
-    -fx-background-color: #555555;
-    -fx-background-radius: 15 15 15 5;
+    -fx-background-radius: 1em 1em 1em 0;
+    -fx-border-radius: 1em 1em 1em 0;
 }
 
 #displayPicture {
+    /* Shadow effect on image. */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 5, 5);
+
+    /* Change size of image. */
     -fx-scale-x: 1;
     -fx-scale-y: 1;
-}
 
+    /* Rotate image clockwise by degrees. */
+    -fx-rotate: 0;
+}
