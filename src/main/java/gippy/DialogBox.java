@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -40,6 +41,10 @@ public class DialogBox extends HBox {
 
         dialog.setText(s);
         displayPicture.setImage(i);
+
+        // Uses Github Copilot to make profile picture circular 
+        Circle clip = new Circle(16, 16, 16);
+        displayPicture.setClip(clip);
     }
 
     /**

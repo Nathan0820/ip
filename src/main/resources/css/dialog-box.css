@@ -1,27 +1,25 @@
+/* Uses Github Copilot to refine my UI */
+
 .label {
-    -fx-background-color: linear-gradient(to bottom right, #a8b3ff, #7dd3fc);
-    -fx-border-width: 2px;
-    -fx-background-radius: 1em 1em 0 1em;
-    -fx-border-radius: 1em 1em 0 1em;
-    -fx-padding: 10px 15px;
-    -fx-font-family: "Segoe UI";
+    -fx-background-color: #2f2f2f;
+    -fx-background-radius: 16;
+    -fx-padding: 12px 16px;
+    -fx-font-family: "Söhne Halbfett", "Söhne", "Segoe UI", "Arial";
     -fx-font-size: 14px;
-    -fx-text-fill: #1e293b;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ececec;
+    -fx-line-spacing: 4;
 }
 
 .reply-label {
-    -fx-background-radius: 1em 1em 1em 0;
-    -fx-border-radius: 1em 1em 1em 0;
+    -fx-background-color: #212121;
+    -fx-background-radius: 16;
+    -fx-border-color: #424242;
+    -fx-border-width: 1;
+    -fx-border-radius: 16;
+    -fx-text-fill: #d1d5db;
 }
 
 #displayPicture {
-    /* Shadow effect on image. */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 5, 5);
-
-    /* Change size of image. */
-    -fx-scale-x: 1;
-    -fx-scale-y: 1;
-
-    /* Rotate image clockwise by degrees. */
-    -fx-rotate: 0;
+    -fx-effect: none;
 }
