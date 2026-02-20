@@ -32,9 +32,15 @@ public class Event extends Task {
                 this.startTime = LocalDate.parse(startTime);
                 this.endTime = LocalDate.parse(endTime);
             } catch (DateTimeParseException e1) {
-                throw new GippyException("Sorry, I don't recognise this pattern. "
+                throw new GippyException("Sorry, I don't recognise this date pattern. "
                         + "Use the following format: event <description> /from <yyyy-MM-dd> /to <yyyy-MM-dd>");
             }
+        }
+        
+        // Validate that start date is not after end date
+        if (this.startTime.isAfter(this.endTime)) {
+            throw new GippyException("Start date cannot be after end date! "
+                    + "Please ensure the /from date is before or equal to the /to date.");
         }
     }
 

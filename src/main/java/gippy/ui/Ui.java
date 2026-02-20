@@ -8,53 +8,11 @@ import gippy.task.TaskList;
  * Ui class to handle interactions with the user.
  */
 public class Ui {
-    private Scanner scanner;
-
-    public Ui() {
-        scanner = new Scanner(System.in);
-    }
-
-    /**
-     * Prints the line that separate messages.
-     */
-    public void printLine() {
-        System.out.println("    ____________________________________________________________");
-    }
-
-    /**
-     * Prints greeting message when chatbot is first activated
-     */
-    public void printHello() {
-        String logo = """
-                   ▄▄▄▄▄▄ ▄▄▄ ▄▄▄▄▄▄▄ ▄▄▄▄▄▄▄ ▄▄   ▄▄ 
-                  █      █   █       █       █  █ █  █
-                  █  ▄▄▄▄█   █    ▄  █    ▄  █  █▄█  █
-                  █ █  ▄▄█   █   █▄█ █   █▄█ █       █
-                  █ █▄▄  █   █    ▄▄▄█    ▄▄▄█▄     ▄█
-                  █      █   █   █   █   █     █   █  
-                  █▄▄▄▄▄▄█▄▄▄█▄▄▄█   █▄▄▄█     █▄▄▄█  
-            """;
-
-        printLine();
-        System.out.println("      Hello! I'm");
-        System.out.println(logo);
-        System.out.println("      How can I help you?");
-        printLine();
-    }
-
     /**
      * Prints closing message when user closes the program
      */
     public String printBye() {
         return "Bye. Hope to see you again soon!";
-    }
-
-    /**
-     * Returns the input
-     * @return input
-     */
-    public String processInput() {
-        return scanner.nextLine().toLowerCase();
     }
 
     /**

@@ -70,10 +70,10 @@ public class Gippy {
      */
     private Task createTodoTask(String input) throws GippyException {
         String description = input.length() > 5 ? input.substring(5).trim() : "";
-            if (description.isEmpty()) {
-                throw new GippyException("Task description needed! Use this format: todo <description>");
-            }
-            return new Todo(description);
+        if (description.isEmpty()) {
+            throw new GippyException("Task description needed! Use this format: todo <description>");
+        }
+        return new Todo(description);
     }
 
     /**
@@ -184,55 +184,6 @@ public class Gippy {
     }
 
     /**
-     * Runs the Gippy chatbot. For CLI only
-     */
-    public void run() {
-        boolean isRunning = true;
-        while (isRunning) {
-            try {
-                String input = ui.processInput();
-                String command = Parser.getCommand(input);
-                switch (command) {
-                    case "bye":
-                        ui.printBye();
-                        isRunning = false;
-                        break;
-                    case "list":
-                        ui.handleList(tasks);
-                        break;
-                    case "mark":
-                        handleMark(input, true);
-                        storage.saveTasks(tasks.getAllTasks());
-                        break;
-                    case "unmark":
-                        handleMark(input, false);
-                        storage.saveTasks(tasks.getAllTasks());
-                        break;
-                    case "delete":
-                        handleDelete(input);
-                        storage.saveTasks(tasks.getAllTasks());
-                        break;
-                    case "todo":
-                    case "deadline":
-                    case "event":
-                        handleAdd(input);
-                        storage.saveTasks(tasks.getAllTasks());
-                        break;
-                    case "find":
-                        handleFind(input);
-                        break;
-                    default:
-                        throw new GippyException("Sorry, I don't understand your input. Please try again.");
-                }
-            } catch (GippyException | IOException e) {
-                ui.printLine();
-                ui.printError(e.getMessage());
-                ui.printLine();
-            }
-        }
-    }
-
-    /**
      * Same logic as run method. For GUI only. Handles input and provide bot output
      * @param input Input from user
      * @return Responses from bot
@@ -296,14 +247,8 @@ public class Gippy {
         }
     }
 
-    //For CLI
-    public static void main(String[] args) {
-        String filePath = Paths.get("data", "gippy.txt").toString();
-        new Gippy(filePath).run();
-    }
-
     /**
-     * Print hello message in GUI only.
+     * Print hello message in GUI.
      * @return Hello message
      */
     public String printHello() {
