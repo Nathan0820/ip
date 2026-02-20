@@ -1,30 +1,50 @@
-# Duke User Guide
+# Gippy User Guide
 
-// Update the title above to match the actual product name
+Your **Personal Task Manager** with different features!
 
-// Product screenshot goes here
+> "To-do list : to-do list!" — Ljupka Cvetanova [(Source)](https://www.goodreads.com/quotes/tag/to-do-list)
 
-// Product intro goes here
+## Features
 
-## Adding deadlines
+- Add Task
+- Delete Task
+- Mark Task as done or undone
+- Find Task
 
-// Describe the action and its outcome.
+## Three Different Task Type Tailored to Your Needs
 
-// Give examples of usage
+1. Todo
+2. Deadline
+3. Event
 
-Example: `keyword (optional arguments)`
+## Progress
+- [X] Basic Features
+- [X] GUI
 
-// A description of the expected outcome goes here
+## Adding Task
 
-```
-expected output
-```
+Choose from todo, deadline or event and then follow the following format:
 
-## Feature ABC
+- todo (description)
+- deadline (description) /by (yyyy-mm-dd)
+- event (description) /from (yyyy-mm-dd) /to (yyyy-mm-dd)
 
-// Feature details
+## Mark and Unmark Task
 
+Use the task number to mark or unmark them
+ 
+- mark 1
+- unmark 3
 
-## Feature XYZ
+## Deleting Task
 
-// Feature details
+Use the task number to delete a task
+
+- delete 1
+- delete 3
+
+## Finding Task
+
+Enter the keyword from the description of the task 
+
+- find (keyword)
