@@ -42,7 +42,7 @@ public class DialogBox extends HBox {
         dialog.setText(s);
         displayPicture.setImage(i);
 
-        // Uses Github Copilot to make profile picture circular 
+        // Uses Github Copilot to make profile picture circular
         Circle clip = new Circle(16, 16, 16);
         displayPicture.setClip(clip);
     }

@@ -1,7 +1,5 @@
 package gippy.ui;
 
-import java.util.Scanner;
-
 import gippy.task.TaskList;
 
 /**
@@ -38,7 +36,6 @@ public class Ui {
         for (int i = 0; i < tasks.size(); i++) {
             sb.append(i + 1).append(". ").append(tasks.getTask(i)).append("\n");
         }
-        
         return sb.toString();
     }
 }

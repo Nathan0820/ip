@@ -36,7 +36,6 @@ public class Event extends Task {
                         + "Use the following format: event <description> /from <yyyy-MM-dd> /to <yyyy-MM-dd>");
             }
         }
-        
         // Validate that start date is not after end date
         if (this.startTime.isAfter(this.endTime)) {
             throw new GippyException("Start date cannot be after end date! "
@@ -67,6 +66,6 @@ public class Event extends Task {
 
     @Override
     public LocalDate getDate() {
-        return this.startTime; 
+        return this.startTime;
     }
 }

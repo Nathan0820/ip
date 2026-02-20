@@ -12,7 +12,6 @@ import gippy.ui.Ui;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Paths;
 
 /**
  * Main Gippy class for the chatbot to operate
@@ -61,7 +60,6 @@ public class Gippy {
         sb.append(task);
         return sb.toString();
     }
-    
 
     /**
      * Creates a Todo task
@@ -88,7 +86,8 @@ public class Gippy {
         }
         int separator = input.indexOf("/by");
         if (separator <= 9) {
-            throw new GippyException("Task description needed! Use this format: deadline <description> /by <yyyy-mm-dd>");
+            throw new GippyException(
+                "Task description needed! Use this format: deadline <description> /by <yyyy-mm-dd>");
         }
         String description = input.substring(9, separator).trim();
         String deadline = input.substring(separator + 4).trim();
@@ -104,12 +103,15 @@ public class Gippy {
      */
     private Task createEventTask(String input) throws GippyException {
         if (!input.contains("/from") || !input.contains("/to")) {
-            throw new GippyException("Task from and to date required! Use this format: event <description> /from <yyyy-mm-dd> /to <yyyy-mm-dd>");
+            throw new GippyException(
+                "Task from and to date required! Use this format:"
+                + " event <description> /from <yyyy-mm-dd> /to <yyyy-mm-dd>");
         }
         int from = input.indexOf("/from");
         int to = input.indexOf("/to");
         if (from <= 6) {
-            throw new GippyException("Task description needed! Use this format: event <description> /from <yyyy-mm-dd> /to <yyyy-mm-dd>");
+            throw new GippyException(
+                "Task description needed! Use this format: event <description> /from <yyyy-mm-dd> /to <yyyy-mm-dd>");
         }
         String description = input.substring(6, from).trim();
         String fromDate = input.substring(from + 6, to).trim();
@@ -136,9 +138,9 @@ public class Gippy {
             throw new GippyException("I'm sorry, I don't know what this means. Please try again.");
         }
         tasks.addTask(task);
-        return "All Righty! This task is added:" + "\n" +
-                task + "\n" +
-                "Now you have " + tasks.size() + " tasks in the list.";
+        return "All Righty! This task is added:" + "\n"
+                + task + "\n"
+                + "Now you have " + tasks.size() + " tasks in the list.";
     }
 
     /**
