@@ -52,10 +52,10 @@ public class Gippy {
 
         if (isDone) {
             task.markDone();
-            sb.append("Nice! I've marked this task as done: \n");
+            sb.append("All Right!! This is done now: \n");
         } else {
             task.markUndone();
-            sb.append("OK, I've marked this task as not done yet: \n");
+            sb.append("OK then, this task is now marked as not done: \n");
         }
 
         sb.append(task);
@@ -71,7 +71,7 @@ public class Gippy {
     private Task createTodoTask(String input) throws GippyException {
         String description = input.length() > 5 ? input.substring(5).trim() : "";
             if (description.isEmpty()) {
-                throw new GippyException("Task description required! Please try again.");
+                throw new GippyException("Task description needed! Use this format: todo <description>");
             }
             return new Todo(description);
     }
@@ -84,11 +84,11 @@ public class Gippy {
      */
     private Task createDeadlineTask(String input) throws GippyException {
         if (!input.contains("/by")) {
-            throw new GippyException("Deadline required! Please include /by.");
+            throw new GippyException("Date required! Use this format: deadline <description> /by <yyyy-mm-dd>");
         }
         int separator = input.indexOf("/by");
         if (separator <= 9) {
-            throw new GippyException("Task description required! Please try again.");
+            throw new GippyException("Task description needed! Use this format: deadline <description> /by <yyyy-mm-dd>");
         }
         String description = input.substring(9, separator).trim();
         String deadline = input.substring(separator + 4).trim();
@@ -104,12 +104,12 @@ public class Gippy {
      */
     private Task createEventTask(String input) throws GippyException {
         if (!input.contains("/from") || !input.contains("/to")) {
-            throw new GippyException("Task from and to date required! Please include /from and /to.");
+            throw new GippyException("Task from and to date required! Use this format: event <description> /from <yyyy-mm-dd> /to <yyyy-mm-dd>");
         }
         int from = input.indexOf("/from");
         int to = input.indexOf("/to");
         if (from <= 6) {
-            throw new GippyException("Task description required! Please try again.");
+            throw new GippyException("Task description needed! Use this format: event <description> /from <yyyy-mm-dd> /to <yyyy-mm-dd>");
         }
         String description = input.substring(6, from).trim();
         String fromDate = input.substring(from + 6, to).trim();
@@ -136,7 +136,7 @@ public class Gippy {
             throw new GippyException("I'm sorry, I don't know what this means. Please try again.");
         }
         tasks.addTask(task);
-        return "Got it. I've added this task:" + "\n" +
+        return "All Righty! This task is added:" + "\n" +
                 task + "\n" +
                 "Now you have " + tasks.size() + " tasks in the list.";
     }
@@ -151,7 +151,7 @@ public class Gippy {
         Task task = tasks.getTask(index);
         StringBuilder sb = new StringBuilder();
         tasks.deleteTask(task);
-        sb.append("Noted. I've removed this task: \n");
+        sb.append("OK. I've removed this task: \n");
         sb.append(task).append("\n");
         sb.append("Now you have ").append(tasks.size()).append(" tasks in the list.");
         return sb.toString();
@@ -307,6 +307,6 @@ public class Gippy {
      * @return Hello message
      */
     public String printHello() {
-        return "Hello, I'm Gippy! How can I help you?";
+        return "Hello there, I'm Gippy!!! How can I help you?";
     }
 }
